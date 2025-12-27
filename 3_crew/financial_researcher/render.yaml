@@ -2,6 +2,7 @@ services:
   - type: web
     name: financial-researcher
     runtime: python
+    rootDir: 3_crew/financial_researcher
     buildCommand: pip install uv && uv sync
     startCommand: uv run python app.py
     envVars:
