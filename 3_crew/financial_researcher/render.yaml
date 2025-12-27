@@ -3,8 +3,8 @@ services:
     name: financial-researcher
     runtime: python
     rootDir: 3_crew/financial_researcher
-    buildCommand: pip install uv && uv sync
-    startCommand: uv run python app.py
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: python app.py
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0

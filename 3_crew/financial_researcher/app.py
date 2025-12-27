@@ -7,13 +7,26 @@ import sys
 import gradio as gr
 from pathlib import Path
 
-# Add src to path so we can import the crew
-sys.path.insert(0, str(Path(__file__).parent / "src"))
+print("Starting Financial Researcher Gradio App...")
+print(f"Current directory: {os.getcwd()}")
+print(f"App file location: {__file__}")
 
-from financial_researcher.crew import ResearchCrew
+# Add src to path so we can import the crew
+src_path = str(Path(__file__).parent / "src")
+sys.path.insert(0, src_path)
+print(f"Added to path: {src_path}")
+
+try:
+    from financial_researcher.crew import ResearchCrew
+
+    print("Successfully imported ResearchCrew")
+except Exception as e:
+    print(f"Error importing ResearchCrew: {e}")
+    raise
 
 # Create output directory if it doesn't exist
 os.makedirs("output", exist_ok=True)
+print("Output directory created/verified")
 
 
 def research_company(company_name, progress=gr.Progress()):
@@ -79,10 +92,6 @@ with gr.Blocks(title="Financial Researcher", theme=gr.themes.Soft()) as demo:
         # 🔍 Financial Researcher
         
         Get comprehensive financial research and analysis on any publicly traded company.
-        
-        **Note:** This tool requires:
-        - OpenAI API key (set as `OPENAI_API_KEY` environment variable)
-        - Serper API key (set as `SERPER_API_KEY` environment variable)
         """
     )
 
@@ -123,4 +132,6 @@ if __name__ == "__main__":
     # Get port from environment variable (Render provides this)
     port = int(os.environ.get("PORT", 7860))
 
-    demo.launch(server_name="0.0.0.0", server_port=port, share=False)
+    print(f"Starting Gradio server on 0.0.0.0:{port}")
+
+    demo.launch(server_name="0.0.0.0", server_port=port, share=False, show_error=True)
