@@ -6,6 +6,7 @@ import os
 import sys
 import gradio as gr
 from pathlib import Path
+from datetime import datetime
 
 print("Starting Financial Researcher Gradio App...")
 print(f"Current directory: {os.getcwd()}")
@@ -48,7 +49,21 @@ def research_company(company_name, progress=gr.Progress()):
         progress(0, desc="🚀 Starting research...")
         yield f"# Researching {company_name}...\n\n⏳ Initializing AI research agents..."
 
-        inputs = {"company": company_name.strip()}
+        # Get current date information
+        now = datetime.now()
+        current_year = now.year
+        current_month = now.strftime("%B")
+        previous_year = current_year - 1
+        next_year = current_year + 1
+
+        inputs = {
+            "company": company_name.strip(),
+            "current_date": now.strftime("%B %Y"),
+            "current_year": str(current_year),
+            "previous_year": str(previous_year),
+            "next_year": str(next_year),
+            "current_month": current_month,
+        }
 
         # Stage 2: Setting up agents
         progress(0.15, desc="🤖 Setting up AI research agents...")

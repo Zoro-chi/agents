@@ -2,32 +2,47 @@
 research_task:
   description: >
     Conduct thorough research on company {company}. Focus on:
-    1. Current company status and health
-    2. Historical company performance
-    3. Major challenges and opportunities
-    4. Recent news and events
-    5. Future outlook and potential developments
+    1. Current company status and health (as of {current_date})
+    2. Recent company performance ({previous_year}-{current_year} data only)
+    3. Major challenges and opportunities in the current market
+    4. Recent news and events from the past 6-12 months
+    5. Future outlook and potential developments for {current_year}-{next_year}
 
+    IMPORTANT: Only use information from {previous_year} and {current_year}. Search for and cite:
+    - Latest quarterly reports (Q3 {current_year}, Q4 {current_year} or newer)
+    - Recent earnings calls and financial statements from {previous_year}-{current_year}
+    - News articles and analysis published in {previous_year}-{current_year}
+    - Current market data and analyst reports from {previous_year}-{current_year}
+
+    Current date context: {current_date}
+    Explicitly include publication dates in your research to verify recency.
     Make sure to organize your findings in a structured format with clear sections.
   expected_output: >
     A comprehensive research document with well-organized sections covering
     all the requested aspects of {company}. Include specific facts, figures,
-    and examples where relevant.
+    publication dates, and examples from {previous_year}-{current_year} only. Ensure all data
+    points are current and relevant to the {current_date} timeframe.
   agent: researcher
 
 analysis_task:
   description: >
     Analyze the research findings and create a comprehensive report on {company}.
     Your report should:
-    1. Begin with an executive summary
-    2. Include all key information from the research
-    3. Provide insightful analysis of trends and patterns
-    4. Offer a market outlook for company, noting that this should not be used for trading decisions
+    1. Begin with an executive summary highlighting current status as of {current_date}
+    2. Include all key information from the research with emphasis on {previous_year}-{current_year} data
+    3. Provide insightful analysis of recent trends and patterns from the past year
+    4. Offer a market outlook for {current_year}-{next_year}, noting that this should not be used for trading decisions
     5. Be formatted in a professional, easy-to-read style with clear headings
+
+    CRITICAL: Ensure all financial data, news references, and market information
+    are from {previous_year}-{current_year}. Include specific dates and timeframes in your report.
+    Do not include any outdated information from earlier years.
+    Current date context: {current_date}
   expected_output: >
     A polished, professional report on {company} that presents the research
     findings with added analysis and insights. The report should be well-structured
-    with an executive summary, main sections, and conclusion.
+    with an executive summary, main sections, and conclusion. All data and references
+    must be from {previous_year}-{current_year} with explicit dates mentioned where applicable.
   agent: analyst
   context:
     - research_task
