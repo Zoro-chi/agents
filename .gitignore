@@ -181,3 +181,14 @@ cython_debug/
 # Ignore Accounts database in capstone project
 6_mcp/accounts.db
 6_mcp/memory/*.db
+
+blogs/
+1_foundations
+guides/
+setup/
+2_openai/community_contributions/
+3_crew/community_contributions/
+4_langgraph/community_contributions/
+5_autogen/community_contributions/
+6_mcp/community_contributions/
+
